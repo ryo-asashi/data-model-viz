@@ -175,7 +175,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ggplot2-を使おう" id="toc-ggplot2-を使おう" class="nav-link active" data-scroll-target="#ggplot2-を使おう"><strong>ggplot2</strong> を使おう</a>
+  <li><a href="#ggplot2-を使ってみよう" id="toc-ggplot2-を使ってみよう" class="nav-link active" data-scroll-target="#ggplot2-を使ってみよう">ggplot2 を使ってみよう</a>
   <ul>
   <li><a href="#the-layered-grammar-of-graphics" id="toc-the-layered-grammar-of-graphics" class="nav-link" data-scroll-target="#the-layered-grammar-of-graphics">The Layered Grammar of Graphics</a>
   <ul class="collapse">
@@ -201,18 +201,29 @@ window.Quarto = {
   <li><a href="#塗りつぶし等高線" id="toc-塗りつぶし等高線" class="nav-link" data-scroll-target="#塗りつぶし等高線">塗りつぶし等高線</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#データの構造を色にする3つのカラーパレット" id="toc-データの構造を色にする3つのカラーパレット" class="nav-link" data-scroll-target="#データの構造を色にする3つのカラーパレット">データの構造を「色」にする：3つのカラーパレット</a>
+  <li><a href="#データの構造を色にする-3種類のカラーパレット" id="toc-データの構造を色にする-3種類のカラーパレット" class="nav-link" data-scroll-target="#データの構造を色にする-3種類のカラーパレット">データの構造を色にする: 3種類のカラーパレット</a>
   <ul>
-  <li><a href="#qualitative-質的パレット" id="toc-qualitative-質的パレット" class="nav-link" data-scroll-target="#qualitative-質的パレット">Qualitative: 質的パレット</a>
+  <li><a href="#qualitative-質的カラーパレット" id="toc-qualitative-質的カラーパレット" class="nav-link" data-scroll-target="#qualitative-質的カラーパレット">Qualitative: 質的カラーパレット</a>
   <ul class="collapse">
-  <li><a href="#代表例" id="toc-代表例" class="nav-link" data-scroll-target="#代表例">代表例</a></li>
+  <li><a href="#配色の例" id="toc-配色の例" class="nav-link" data-scroll-target="#配色の例">配色の例</a></li>
   <li><a href="#データの水準とパレットの色数に関する注意点" id="toc-データの水準とパレットの色数に関する注意点" class="nav-link" data-scroll-target="#データの水準とパレットの色数に関する注意点">データの水準とパレットの色数に関する注意点</a></li>
   </ul></li>
-  <li><a href="#sequential-順序パレット" id="toc-sequential-順序パレット" class="nav-link" data-scroll-target="#sequential-順序パレット">Sequential: 順序パレット</a></li>
-  <li><a href="#diverging-発散パレット" id="toc-diverging-発散パレット" class="nav-link" data-scroll-target="#diverging-発散パレット">Diverging: 発散パレット</a></li>
+  <li><a href="#sequential-順序カラーパレット" id="toc-sequential-順序カラーパレット" class="nav-link" data-scroll-target="#sequential-順序カラーパレット">Sequential: 順序カラーパレット</a>
+  <ul class="collapse">
+  <li><a href="#配色の例-1" id="toc-配色の例-1" class="nav-link" data-scroll-target="#配色の例-1">配色の例</a></li>
   </ul></li>
-  <li><a href="#storytelling-with-data" id="toc-storytelling-with-data" class="nav-link" data-scroll-target="#storytelling-with-data">Storytelling With Data</a></li>
-  <li><a href="#参考資料" id="toc-参考資料" class="nav-link" data-scroll-target="#参考資料">参考資料</a></li>
+  <li><a href="#diverging-発散カラーパレット" id="toc-diverging-発散カラーパレット" class="nav-link" data-scroll-target="#diverging-発散カラーパレット">Diverging: 発散カラーパレット</a>
+  <ul class="collapse">
+  <li><a href="#配色の例-2" id="toc-配色の例-2" class="nav-link" data-scroll-target="#配色の例-2">配色の例</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#storytelling-with-data" id="toc-storytelling-with-data" class="nav-link" data-scroll-target="#storytelling-with-data">Storytelling With Data</a>
+  <ul>
+  <li><a href="#識別のための配色から強調のための配色へ" id="toc-識別のための配色から強調のための配色へ" class="nav-link" data-scroll-target="#識別のための配色から強調のための配色へ">識別のための配色から強調のための配色へ</a></li>
+  </ul></li>
+  <li><a href="#enjoy" id="toc-enjoy" class="nav-link" data-scroll-target="#enjoy">Enjoy !!</a></li>
+  <li><a href="#リンク集" id="toc-リンク集" class="nav-link" data-scroll-target="#リンク集">リンク集</a></li>
+  <li><a href="#使用パッケージ一覧" id="toc-使用パッケージ一覧" class="nav-link" data-scroll-target="#使用パッケージ一覧">使用パッケージ一覧</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +233,6 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Tokyo.R #120 データの可視化</h1>
-<p class="subtitle lead">データの構造を色にする：3種類のカラーパレットを使いこなそう</p>
 </div>
 
 
@@ -242,25 +252,30 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2 and extensions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midnight)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data handling</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># data</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2 extensions</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midnight)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(khroma)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridisLite)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># data handling</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># data providers</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="ggplot2-を使おう" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot2-を使おう"><strong>ggplot2</strong> を使おう</h2>
-<p><strong>ggplot2</strong> は、<strong>R</strong> でデータ可視化を行う際の標準的なパッケージです。 その豊富な機能に加え、単体では作成できないプロットを実現するための多くの拡張パッケージが開発されています。</p>
+<section id="ggplot2-を使ってみよう" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot2-を使ってみよう">ggplot2 を使ってみよう</h2>
+<p><strong>ggplot2</strong> は、<strong>R</strong> でデータの可視化を行う際に標準的に利用されているパッケージです。 その豊富な機能に加え、単体では作成できないプロットを実現するための多くの拡張パッケージが開発されています。</p>
 <p><strong>ggplot2</strong> と拡張パッケージを活用することで、たとえば以下のような多様なプロットを作成することが可能です。</p>
 <div class="cell">
 <details class="code-fold">
@@ -342,28 +357,58 @@ window.Quarto = {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"PNAME"</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>legend_label <span class="ot">=</span> <span class="st">"Life Expectancy at Birth</span><span class="sc">\n</span><span class="st">(Female, 2020)"</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> japan) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> E0F<span class="fl">.2020</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> E0F<span class="fl">.2020</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_theme</span>(<span class="st">"eclipse"</span>, <span class="at">middle =</span> <span class="fl">87.74</span>) <span class="sc">+</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_theme</span>(<span class="st">"eclipse"</span>, <span class="at">middle =</span> <span class="fl">87.74</span>) <span class="sc">+</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">125.5</span>, <span class="fl">146.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">26.5</span>, <span class="fl">45.0</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> legend_label, <span class="at">color =</span> legend_label) <span class="sc">+</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_midr</span>(<span class="at">grid =</span> <span class="st">"xy"</span>) <span class="sc">+</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">40</span>, <span class="st">"pt"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#legend_label = "歳"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>legend_label <span class="ot">=</span> <span class="st">"Years"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> japan) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> E0F<span class="fl">.2020</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> E0F<span class="fl">.2020</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_theme</span>(<span class="st">"eclipse"</span>, <span class="at">middle =</span> <span class="fl">87.74</span>) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_theme</span>(<span class="st">"eclipse"</span>, <span class="at">middle =</span> <span class="fl">87.74</span>) <span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">125.5</span>, <span class="fl">146.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">26.5</span>, <span class="fl">45.0</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> legend_label, <span class="at">color =</span> legend_label,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Life Expectancy at Birth by Prefecture"</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Japan, Female, 2020 — Average: 87.7 Years"</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_midr</span>(<span class="at">grid =</span> <span class="st">"xy"</span>) <span class="sc">+</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">55</span>, <span class="st">"pt"</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/life_expectancy-1.png" class="img-fluid figure-img" width="720"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_len, <span class="at">y =</span> bill_dep, <span class="at">fill =</span> species, <span class="at">size =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_theme</span>(<span class="st">"mako@qual?alpha=.5"</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> <span class="fu">toupper</span>(island)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>, <span class="at">y =</span> <span class="st">"Bill Depth"</span>, <span class="at">fill =</span> <span class="st">"Species"</span>, <span class="at">size =</span> <span class="st">"Body Mass"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_midr</span>(<span class="at">grid =</span> <span class="st">"xy"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"gray10"</span>, <span class="at">color =</span> <span class="st">"gray10"</span>, <span class="at">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">4</span>))) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/penguins-1.png" class="img-fluid figure-img" width="720"></p>
 </figure>
 </div>
 </div>
@@ -399,17 +444,17 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="理論に忠実なコード表現">理論に忠実なコード表現</h4>
 <p>通常、私たちは <code>geom_point()</code> などの短縮関数を使いますが、Layered Grammar of Graphics の理論を厳密にコード化すると、たとえば散布図は以下のように記述されます。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> diamonds,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"point"</span>,        <span class="co"># データを点で表現</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"identity"</span>,     <span class="co"># データを加工せずそのまま使用</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>  <span class="co"># 重なりを調整せずそのまま配置</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>() <span class="sc">+</span>   <span class="co"># y軸に連続値のスケールを指定</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>() <span class="sc">+</span>   <span class="co"># x軸に連続値のスケールを指定</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>()        <span class="co"># 直交座標系を指定</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> diamonds,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"point"</span>,        <span class="co"># データを点で表現</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"identity"</span>,     <span class="co"># データを加工せずそのまま使用</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>  <span class="co"># 重なりを調整せずそのまま配置</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>() <span class="sc">+</span>   <span class="co"># y軸に連続値のスケールを指定</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>() <span class="sc">+</span>   <span class="co"># x軸に連続値のスケールを指定</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>()        <span class="co"># 直交座標系を指定</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -423,8 +468,8 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="短縮関数を用いた実際のコード表現">短縮関数を用いた実際のコード表現</h4>
 <p>実際には、<code>geom_point()</code> や <code>geom_histogram()</code> といった<strong>短縮関数</strong>が用意されています。 これらは内部で <code>stat</code> や <code>position</code> をデフォルト値として持っており、適切な <strong>Layer</strong> を作り出します。 さらに、<strong>Scale</strong> や <strong>Coord</strong> もデータの型などに合わせて自動的に選択されるため、ユーザーは極めてシンプルなコードで高度な可視化を実現できるようになっています。</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -445,10 +490,10 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_point()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span>  <span class="co"># x軸に対数スケールを指定</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()    <span class="co"># y軸に対数スケールを指定</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span>  <span class="co"># x軸に対数スケールを指定</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()    <span class="co"># y軸に対数スケールを指定</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -468,8 +513,8 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_bar()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -486,8 +531,8 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_col()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">count</span>(clarity)) <span class="sc">+</span>   <span class="co"># カウント済みデータを指定</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> n)) <span class="co"># x軸上の位置に水準を対応付ける</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">count</span>(clarity)) <span class="sc">+</span>   <span class="co"># カウント済みデータを指定</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> n)) <span class="co"># x軸上の位置に水準を対応付ける</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -506,9 +551,9 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_histogram()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -526,9 +571,9 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_density()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -546,9 +591,9 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_boxplot()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -566,8 +611,8 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_line()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -585,8 +630,8 @@ window.Quarto = {
 <li><p><strong>短縮関数:</strong> <code>geom_area()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -604,8 +649,8 @@ window.Quarto = {
 <li><p><strong>短縮関数</strong>: geom_tile()</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">fill =</span> density)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">fill =</span> density)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -625,8 +670,8 @@ window.Quarto = {
 <li><p><strong>短縮関数</strong>: geom_contour()</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">z =</span> density)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">z =</span> density)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -643,8 +688,8 @@ window.Quarto = {
 <li><p><strong>短縮関数</strong>: geom_contour_filled()</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">z =</span> density)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">z =</span> density)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour_filled</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -657,35 +702,64 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="データの構造を色にする3つのカラーパレット" class="level2">
-<h2 class="anchored" data-anchor-id="データの構造を色にする3つのカラーパレット">データの構造を「色」にする：3つのカラーパレット</h2>
+<section id="データの構造を色にする-3種類のカラーパレット" class="level2">
+<h2 class="anchored" data-anchor-id="データの構造を色にする-3種類のカラーパレット">データの構造を色にする: 3種類のカラーパレット</h2>
 <p>審美的属性 (Aesthetics) の中でも、<strong>色</strong>は人間の視覚に最も強く訴えかける要素です。</p>
-<p><strong>ggplot2</strong> やその拡張パッケージには、<code>color/colour</code> や <code>fill</code> 属性を制御するためのスケール関数が驚くほど豊富に用意されています。そのため、ユーザーは簡単なコードでプロットを美しく彩ることができます。しかし、選択肢が豊富であるために、ユーザーには選択の責任が生じます。データの性質や構造に即したパレットに基づくスケールを選ばなければ、グラフはどれほど美しく見えても、情報の解釈を歪め、読み手に誤解を招く原因になりかねません。</p>
-<p>色彩を「単なる飾り」ではなく「データの説明変数」として機能させるためには、以下の3つの基本パレットの使い分けをマスターすることが不可欠です。</p>
-<section id="qualitative-質的パレット" class="level3">
-<h3 class="anchored" data-anchor-id="qualitative-質的パレット">Qualitative: 質的パレット</h3>
-<p>色同士に明確な順序や大小関係がないパレットです。 因子型変数の水準を塗り分ける用途に適しています。</p>
+<p><strong>ggplot2</strong> やその拡張パッケージには、<code>color/colour</code> や <code>fill</code> 属性を制御するためのスケール関数が驚くほど豊富に用意されています。 そのため、ユーザーは簡単なコードでプロットを美しく彩ることができます。</p>
+<p>しかし、選択肢が豊富であるために、ユーザーには選択の責任が生じます。 データの性質や構造に即した配色のスケールを選ばなければ、グラフはどれほど美しく見えても、情報の解釈を歪め、読み手の誤解を招く原因になりかねません。</p>
+<p>色を、単なるプロットの飾りとしてではなく、データの理解に役立つ要素として機能させるためには、<strong>Qualitative</strong> (質的)、<strong>Sequential</strong> (順序)、<strong>Diverging</strong> (発散) という基本的な3種類のカラーパレットの使い分けを習得することが重要です。</p>
+<section id="qualitative-質的カラーパレット" class="level3">
+<h3 class="anchored" data-anchor-id="qualitative-質的カラーパレット">Qualitative: 質的カラーパレット</h3>
+<p>色同士に明確な順序や大小関係がない配色です。 因子型変数の水準を塗り分ける用途に適しています。</p>
+<section id="配色の例" class="level4">
+<h4 class="anchored" data-anchor-id="配色の例">配色の例</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="720"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="代表例" class="level4">
-<h4 class="anchored" data-anchor-id="代表例">代表例</h4>
+<ul>
+<li><p><strong>Okabe-Ito パレット</strong>:</p>
+<p>色覚の特性に関わらず、多くの人が色の違いを判別できるように設計されたユニバーサルデザインの配色です。</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5000</span>)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> clarity)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_okabeito</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 <ul>
 <li><p><strong>HCL パレット</strong></p>
-<p>人間の知覚に基づいた <strong>HCL 色空間</strong> (Hue: 色相、Chroma: 彩度、Luminance: 輝度) を利用します。彩度（鮮やかさ）と輝度（明るさ）を一定に保ち、色相（色の種類）のみを等間隔にサンプリングすることで、特定のカテゴリだけが目立ってしまう視覚的不平等を防ぎ、公平な比較を可能にします。</p></li>
-<li><p><strong>Okabe-Ito パレット</strong>:</p>
-<p>色覚の特性に関わらず、多くの人が色の違いを判別できるように設計されたユニバーサルデザインのパレットです。</p></li>
+<p>人間の知覚に基づいた <strong>HCL 色空間</strong> (Hue: 色相、Chroma: 彩度、Luminance: 輝度) を利用するパレットです。彩度（鮮やかさ）と輝度（明るさ）を一定に保ち、色相（色の種類）のみを等間隔にサンプリングすることで、特定のカテゴリだけが目立ってしまう視覚的不平等を防ぎ、公平な比較を可能にします。</p></li>
 </ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5000</span>)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_hue</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="データの水準とパレットの色数に関する注意点" class="level4">
 <h4 class="anchored" data-anchor-id="データの水準とパレットの色数に関する注意点">データの水準とパレットの色数に関する注意点</h4>
-<pre><code>質的パレットには、対応付ける変数の水準数によって色の順序が変化するなどの特殊な挙動をするものがあります。特に、水準数がパレットの提供する色数の上限を超えた場合の挙動には注意が必要です。以下はその一例です。</code></pre>
+<p>質的パレットには、対応付ける変数の水準数によって色の順序が変化するなどの特殊な挙動をするものがあります。特に、水準数がパレットの提供する色数の上限を超えた場合の挙動には注意が必要です。以下はその一例です。</p>
 <ul>
 <li><p><strong>補間</strong> (Interpolation): 足りない色を計算で作り出し、グラデーションのように対応させる。</p></li>
 <li><p><strong>循環</strong> (Cycling): 用意された色を使い切り、最初に戻って繰り返す。</p></li>
@@ -693,47 +767,146 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="sequential-順序パレット" class="level3">
-<h3 class="anchored" data-anchor-id="sequential-順序パレット">Sequential: 順序パレット</h3>
-<p>明度や彩度が、低い値から高い値に向かって一方向に滑らかに変化するタイプのパレットです。 一方向に増加する数値型変数を表現する用途に適しています。</p>
+<section id="sequential-順序カラーパレット" class="level3">
+<h3 class="anchored" data-anchor-id="sequential-順序カラーパレット">Sequential: 順序カラーパレット</h3>
+<p>明度や彩度が低い色から高い色に向かって連続的に変化するタイプのパレットです。 一方向に増加する数値型変数を表現する用途に適しています。</p>
+<section id="配色の例-1" class="level4">
+<h4 class="anchored" data-anchor-id="配色の例-1">配色の例</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="720"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Viridis パレット</strong></p>
+<p>現在、データサイエンスの世界で最も推奨されているパレットの一つです。色の変化が人間の目にとって「数値の変化」と等しく感じられるよう数学的に設計されています。色覚多様性への配慮という観点からも推奨されています。</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">fill =</span> density)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="diverging-発散パレット" class="level3">
-<h3 class="anchored" data-anchor-id="diverging-発散パレット">Diverging: 発散パレット</h3>
-<p>白や薄いグレーのような中立な色を中央に持ち、両極端に向かって異なる2つの色相が濃くなっていくタイプのパレットです。 ゼロなどの明確な基準値があり、そこから正負の方向に広がる連続変数を表現する用途に適しています。</p>
+</section>
+<section id="diverging-発散カラーパレット" class="level3">
+<h3 class="anchored" data-anchor-id="diverging-発散カラーパレット">Diverging: 発散カラーパレット</h3>
+<p>白や薄いグレーのような中立な色を中央に持ち、両極端に向かって異なる2つの色相が濃くなっていくタイプのパレットです。 ゼロや平均値などの明確な基準値があり、そこから正負の方向に広がる連続変数を表現する用途に適しています。</p>
+<section id="配色の例-2" class="level4">
+<h4 class="anchored" data-anchor-id="配色の例-2">配色の例</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="720"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
+<ul>
+<li><p><strong>Red-Blue パレット</strong></p>
+<p>赤と青という2色の直感的なイメージを利用した、最もポピュラーな発散パレットの一つです。</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithfuld, <span class="fu">aes</span>(<span class="at">x =</span> eruptions, <span class="at">y =</span> waiting, <span class="at">fill =</span> density)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_theme</span>(<span class="st">"RdBu"</span>, <span class="at">middle =</span> <span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
 </section>
 </section>
 <section id="storytelling-with-data" class="level2">
 <h2 class="anchored" data-anchor-id="storytelling-with-data">Storytelling With Data</h2>
-<p><strong>ggplot2</strong> パッケージは、データから柔軟にプロットを作り上げるための最強の道具です。 レイヤーを重ねてプロットの骨格を構築したら、データの構造に合致したカラーパレットで彩ることで、直感的で説得力のあるプロットを作成することができます。</p>
-<p>ぜひ皆様も、<strong>ggplot2</strong> とその拡張パッケージ (ggplot2 extensions) を駆使して、ご自身のデータに最適な色を与えてみてください。</p>
-<p><strong>Enjoy!!</strong></p>
+<section id="識別のための配色から強調のための配色へ" class="level3">
+<h3 class="anchored" data-anchor-id="識別のための配色から強調のための配色へ">識別のための配色から強調のための配色へ</h3>
+<p>データの可視化には、全容を把握するための<strong>探索的</strong>なフェーズと、伝えたいメッセージを強調する<strong>説明的</strong>なフェーズがあります。</p>
+<p>探索的な可視化においてはデータの識別性を高めることが重要ですが、説明的な可視化においては<strong>データを使って語ること (Storytelling With Data)</strong> が重要です。 そして、その核心は「読者の認知負荷を減らし、見てほしい場所に一瞬で視線を誘導すること」にあります。</p>
+<p>プロットの中で多くの色を使い分けると、聞き手・読み手が色の意味を把握するために凡例とプロットの本体との間を何度も往復することになります。 伝えたいメッセージだけを強調するためには、主役以外の部分をグレーアウトするという手法が極めて有効です。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">fill =</span> <span class="fu">ifelse</span>(carat <span class="sc">&lt;</span> <span class="dv">1</span>, <span class="st">"&lt;1"</span>, <span class="st">"&gt;=1"</span>)),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"fill"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_theme</span>(<span class="st">"highlight?accent='steelblue';which=2"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"クラリティが向上するほど大きなダイヤモンドの割合は減少する"</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    subtitle = "Proportion of Large Diamonds Decreases as Clarity Increases",</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Carat"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion"</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>(<span class="at">ink =</span> <span class="st">"gray10"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="参考資料" class="level2">
-<h2 class="anchored" data-anchor-id="参考資料">参考資料</h2>
+</section>
+<section id="enjoy" class="level2">
+<h2 class="anchored" data-anchor-id="enjoy">Enjoy !!</h2>
+<p><strong>ggplot2</strong> パッケージは、データから柔軟にプロットを作り上げるための最強の道具です。 レイヤーを重ねてプロットの骨格を構築し、データの構造に合致したカラーパレットで彩ることで、プロットを作成することができます。</p>
+<p>ぜひ皆様も、<strong>ggplot2</strong> とその拡張パッケージ (ggplot2 extensions) を駆使して、ご自身のデータに最適な色を与えてみてください。</p>
+</section>
+<section id="リンク集" class="level2">
+<h2 class="anchored" data-anchor-id="リンク集">リンク集</h2>
 <ul>
-<li><p>ggplot2 extensions https://exts.ggplot2.tidyverse.org/</p></li>
-<li><p>all your figure are belong to us https://yutannihilation.github.io/allYourFigureAreBelongToUs/</p></li>
-<li><p>Wickham, H. (2008), “Practical Tools for Exploring Data and Models”, Ph.D.&nbsp;thesis, Iowa State University, <a href="https://dr.lib.iastate.edu/entities/publication/9210139e-102e-4537-8b6e-7d8197e2f3d8">link</a></p></li>
-<li><p>Wickham, H. (2010), “A Layered Grammar of Graphics”, Journal of Computational and Graphical Statistics, 19(1), 3–28., <a href="https://vita.had.co.nz/papers/layered-grammar.pdf">link</a></p></li>
+<li><p><a href="https://exts.ggplot2.tidyverse.org/"><strong>ggplot2 Extensions</strong></a></p>
+<p>ggplot2 の拡張パッケージを網羅的に紹介している公式ウェブサイト</p></li>
+<li><p><a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/"><strong>All Your Figure Are Belong To Us</strong></a></p>
+<p>圧倒的な事例数を誇る ggplot2 を用いた可視化のギャラリー</p></li>
+<li><p>Wickham, H. (2008), “<a href="https://dr.lib.iastate.edu/entities/publication/9210139e-102e-4537-8b6e-7d8197e2f3d8">Practical Tools for Exploring Data and Models</a>”, Ph.D.&nbsp;thesis, Iowa State University</p>
+<p>Hadley Wickham 氏の博士論文</p></li>
+<li><p>Wickham, H. (2010), “<a href="https://vita.had.co.nz/papers/layered-grammar.pdf">A Layered Grammar of Graphics</a>”, Journal of Computational and Graphical Statistics, 19(1), 3–28.</p>
+<p>Layered Grammar of Graphics に関する議論が整理された論文</p></li>
 </ul>
+</section>
+<section id="使用パッケージ一覧" class="level2">
+<h2 class="anchored" data-anchor-id="使用パッケージ一覧">使用パッケージ一覧</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>- base: 4.5.1
+- methods: 4.5.1
+- datasets: 4.5.1
+- utils: 4.5.1
+- grDevices: 4.5.1
+- graphics: 4.5.1
+- stats: 4.5.1
+- ggplot2: 4.0.2
+- ggrepel: 0.9.6
+- midr: 0.6.0.903
+- midnight: 0.2.0
+- khroma: 1.17.0
+- MetBrewer: 0.2.0
+- RColorBrewer: 1.1.3
+- viridisLite: 0.4.3
+- dplyr: 1.2.0
+- gapminder: 1.0.1
+- rnaturalearth: 1.2.0
+- fmsb: 0.7.6</code></pre>
+</div>
+</div>
 
 
 </section>
