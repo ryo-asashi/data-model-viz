@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -137,41 +203,14 @@
 
   <p class="date">2026-04-18</p>
 </section>
-<section id="使用パッケージ" class="slide level2">
-<h2>使用パッケージ</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>- base: 4.5.1
-- methods: 4.5.1
-- datasets: 4.5.1
-- utils: 4.5.1
-- grDevices: 4.5.1
-- graphics: 4.5.1
-- stats: 4.5.1
-- ggplot2: 4.0.2
-- ggrepel: 0.9.6
-- midr: 0.6.0
-- midnight: 0.2.0
-- khroma: 1.17.0
-- MetBrewer: 0.2.0
-- RColorBrewer: 1.1.3
-- viridisLite: 0.4.3
-- dplyr: 1.2.0
-- gapminder: 1.0.1
-- rnaturalearth: 1.2.0
-- fmsb: 0.7.6
-- ISLR2: 1.3.2</code></pre>
-</div>
-</div>
-</section>
-<section id="ggplot2-パッケージを使おう" class="slide level2">
-<h2>ggplot2 パッケージを使おう</h2>
+<section id="ggplot2-を使ってみよう" class="slide level2">
+<h2>ggplot2 を使ってみよう</h2>
 <ul>
-<li>探索的な可視化は、そのデータを理解するための第一歩</li>
-<li><strong>ggplot2</strong> は探索的な可視化に最適なパッケージ
+<li><p><strong>探索的な可視化</strong>はデータを理解するための第一歩</p></li>
+<li><p><strong>ggplot2</strong> は探索的な可視化に最適なパッケージ</p>
 <ul>
-<li>多彩で柔軟な表現が可能</li>
-<li><strong>ggforce</strong>、<strong>patchwork</strong>、<strong>gganimate</strong> などの拡張パッケージも豊富</li>
+<li><p>多彩で柔軟な表現が可能</p></li>
+<li><p>拡張パッケージも豊富</p></li>
 </ul></li>
 </ul>
 </section>
@@ -194,47 +233,66 @@
 <section id="the-layered-grammar-of-graphics" class="slide level2">
 <h2>The Layered Grammar of Graphics</h2>
 <ul>
-<li><p>プロットを、散布図や棒グラフなどの典型的パターンではなく、抽象的な構成要素からなる <strong>Layer（層）</strong> として構築する理論</p></li>
-<li><p><strong>Defaults</strong>: プロットで共通して用いる基盤。データ (<code>data</code>) と審美的属性の対応付け (<code>mapping</code>) を含む。</p></li>
-<li><p><strong>Layer</strong>: プロット図形的要素 (<code>geom</code>) 、統計的変換 (<code>stat</code>)、配置 (<code>position</code>)</p></li>
-<li><p><strong>Scale</strong>: データの値を、位置・色・サイズなどの審美的属性に変換</p></li>
-<li><p><strong>Coord</strong>: 位置を描画領域に対応付ける座標系</p></li>
-<li><p><strong>Facet</strong>: データの分割表示方法</p></li>
+<li>プロットは、図形的要素やデータに対する統計処理などの抽象的な構成要素からなる <strong>Layer</strong> を重ねて構築されるもの</li>
 </ul>
+<ol type="1">
+<li><p><strong>Defaults</strong>: プロットで共通して用いる <code>data</code> と <code>mapping</code></p>
+<p><strong>mapping</strong>: 変数と審美的属性の対応関係 / <code>aes()</code> 関数で指定</p></li>
+<li><p><strong>Layer</strong>: 図形的要素 <code>geom</code> / 統計的変換 <code>stat</code> / 配置調整 <code>position</code></p></li>
+<li><p><strong>Scale</strong>: データを位置や色などの審美的属性のスケール上の値に変換</p></li>
+<li><p><strong>Coord</strong>: 位置の値を描画領域の物理的な場所に対応付ける座標系</p></li>
+<li><p><strong>Facet</strong>: データを分割して小窓で表示する方法の指定</p></li>
+</ol>
 </section>
 <section class="slide level2">
 
-<h3 id="理論と短縮関数">理論と短縮関数</h3>
+<h3 id="厳密なコード表現">厳密なコード表現</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>厳密なコード表現</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">layer</span>(</span>
+<span id="cb1-3"><a></a>    <span class="at">data =</span> diamonds,</span>
+<span id="cb1-4"><a></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price),</span>
+<span id="cb1-5"><a></a>    <span class="at">geom =</span> <span class="st">"point"</span>,</span>
+<span id="cb1-6"><a></a>    <span class="at">stat =</span> <span class="st">"identity"</span>,</span>
+<span id="cb1-7"><a></a>    <span class="at">position =</span> <span class="st">"identity"</span></span>
+<span id="cb1-8"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb1-9"><a></a>  <span class="fu">scale_y_continuous</span>() <span class="sc">+</span></span>
+<span id="cb1-10"><a></a>  <span class="fu">scale_x_continuous</span>() <span class="sc">+</span></span>
+<span id="cb1-11"><a></a>  <span class="fu">coord_cartesian</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div><div class="column" style="width:50%;">
-<p><strong>実際のコード (短縮関数)</strong></p>
-<p><em>内部でデフォルトの <code>stat</code> や <code>position</code> を補完している</em></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
 
-<h3 id="散布図と度数グラフ">散布図と度数グラフ</h3>
+<h3 id="実際のコード">実際のコード</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>散布図</strong> (<code>geom_point</code>)</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
+<ul>
+<li><p><code>geom_*()</code> や <code>stat_*()</code> は必要な要素をデフォルト値で補間した <strong>Layer</strong> を出力</p></li>
+<li><p><code>scale_*()</code> や <code>coord_*()</code> はデフォルトの設定が適用される</p></li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>度数グラフ</strong> (<code>geom_bar</code>)</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -243,26 +301,291 @@
 </section>
 <section class="slide level2">
 
-<h3 id="ヒストグラムと密度曲線">ヒストグラムと密度曲線</h3>
+<h3 id="散布図-scatter-plot">散布図 (Scatter Plot)</h3>
+<ul>
+<li><p><code>geom = "point", stat = "identity", position = "identity"</code></p></li>
+<li><p><code>geom_point()</code> で作成</p></li>
+</ul>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>ヒストグラム</strong> (<code>geom_histogram</code>)</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb3-2"><a></a>  <span class="at">data =</span> diamonds,</span>
+<span id="cb3-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)</span>
+<span id="cb3-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<p><strong>密度曲線</strong> (<code>geom_density</code>)</p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="棒グラフ-bar-chart---度数グラフ">棒グラフ (Bar Chart) - 度数グラフ</h3>
+<ul>
+<li><p><code>geom = "bar", stat = "count", position = "stack"</code></p></li>
+<li><p><code>geom_bar()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-2"><a></a>  <span class="at">data =</span> diamonds,</span>
+<span id="cb4-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity)</span>
+<span id="cb4-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="棒グラフ-bar-chart---列グラフ">棒グラフ (Bar Chart) - 列グラフ</h3>
+<ul>
+<li><p><code>geom = "col", stat = "identity", position = "stack"</code></p></li>
+<li><p><code>geom_col()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb5-2"><a></a>  <span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">count</span>(clarity),</span>
+<span id="cb5-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> n)</span>
+<span id="cb5-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="ヒストグラム-histogram">ヒストグラム (Histogram)</h3>
+<ul>
+<li><p><code>geom = "bar", stat = "bin", position = "stack"</code></p></li>
+<li><p><code>geom_histogram()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-2"><a></a>  <span class="at">data =</span> diamonds,</span>
+<span id="cb6-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price)</span>
+<span id="cb6-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="密度曲線-density-plot">密度曲線 (Density Plot)</h3>
+<ul>
+<li><p><code>geom = "area", stat = "density", position = "identity"</code></p></li>
+<li><p><code>geom_density()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a></a>  <span class="at">data =</span> diamonds,</span>
+<span id="cb7-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price)</span>
+<span id="cb7-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb7-6"><a></a>  <span class="fu">scale_x_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="箱ひげ図-boxplot">箱ひげ図 (Boxplot)</h3>
+<ul>
+<li><p><code>geom = "boxplot", stat = "boxplot", position = "dodge2"</code></p></li>
+<li><p><code>geom_boxplot()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a></a>  <span class="at">data =</span> diamonds,</span>
+<span id="cb8-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">y =</span> price)</span>
+<span id="cb8-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb8-5"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="折れ線グラフ-line-chart">折れ線グラフ (Line Chart)</h3>
+<ul>
+<li><p><code>geom = "line", stat = "identity", position = "identity"</code></p></li>
+<li><p><code>geom_line()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb9-2"><a></a>  <span class="at">data =</span> economics,</span>
+<span id="cb9-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)</span>
+<span id="cb9-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="面グラフ-area-chart">面グラフ (Area Chart)</h3>
+<ul>
+<li><p><code>geom = "area", stat = "identity", position = "stack"</code></p></li>
+<li><p><code>geom_area()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a></a>  <span class="at">data =</span> economics,</span>
+<span id="cb10-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)</span>
+<span id="cb10-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">geom_area</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="ヒートマップ-heatmap">ヒートマップ (Heatmap)</h3>
+<ul>
+<li><p><code>geom = "tile", stat = "identity", position = "identity"</code></p></li>
+<li><p><code>geom_tile()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb11-2"><a></a>  <span class="at">data =</span> faithfuld,</span>
+<span id="cb11-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb11-4"><a></a>    <span class="at">x =</span> eruptions,</span>
+<span id="cb11-5"><a></a>    <span class="at">y =</span> waiting,</span>
+<span id="cb11-6"><a></a>    <span class="at">fill =</span> density</span>
+<span id="cb11-7"><a></a>  )</span>
+<span id="cb11-8"><a></a>) <span class="sc">+</span></span>
+<span id="cb11-9"><a></a>  <span class="fu">geom_tile</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="等高線図-contour-plot---等高線">等高線図 (Contour Plot) - 等高線</h3>
+<ul>
+<li><p><code>geom = "path", stat = "contour", position = "identity"</code></p></li>
+<li><p><code>geom_contour()</code> で作成</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb12-2"><a></a>  <span class="at">data =</span> faithfuld,</span>
+<span id="cb12-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb12-4"><a></a>    <span class="at">x =</span> eruptions,</span>
+<span id="cb12-5"><a></a>    <span class="at">y =</span> waiting,</span>
+<span id="cb12-6"><a></a>    <span class="at">z =</span> density</span>
+<span id="cb12-7"><a></a>  )</span>
+<span id="cb12-8"><a></a>) <span class="sc">+</span></span>
+<span id="cb12-9"><a></a>  <span class="fu">geom_contour</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -271,96 +594,109 @@
 </section>
 <section id="データの構造を色にする" class="slide level2">
 <h2>データの構造を色にする</h2>
-<p>色は人間の視覚に最も強く訴えかける要素。 データの性質に即したスケールを選ばないと、解釈を歪める原因に。</p>
-<p><strong>3つの基本パレット</strong></p>
+<ul>
+<li><p>色は審美的属性の中でも特に人間の視覚に強く訴えかける</p></li>
+<li><p>データの性質に即したスケールを選ばないと解釈を歪めてしまう</p></li>
+<li><p><strong>3種類の基本パレット</strong></p>
 <ol type="1">
-<li><strong>Qualitative</strong> (質的)</li>
-<li><strong>Sequential</strong> (順序)</li>
-<li><strong>Diverging</strong> (発散)</li>
-</ol>
-</section>
-<section class="slide level2">
-
-<h3 id="qualitative-質的カラーパレット">1. Qualitative: 質的カラーパレット</h3>
-<p>順序や大小関係がない配色。因子型変数の塗り分けに。</p>
-
-<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><ul>
-<li><strong>Okabe-Ito</strong>: カラーユニバーサルデザイン</li>
-<li><strong>HCL</strong>: 視覚的平等を保つ設計</li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>paletteer パッケージ</strong></p>
-</div>
-<div class="callout-content">
-<p><code>scale_color_paletteer_d()</code> などを使えば、R上の無数のパレットを統一インターフェースで呼び出せます。</p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="sequential-順序カラーパレット">2. Sequential: 順序カラーパレット</h3>
-<p>明度や彩度が連続的に変化。一方向に増加する数値に。</p>
-
-<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><ul>
-<li><strong>Viridis</strong>: 数値の変化と視覚的変化が一致するように数学的に設計。</li>
+<li><p><strong>Qualitative</strong> (質的)</p></li>
+<li><p><strong>Sequential</strong> (順序)</p></li>
+<li><p><strong>Diverging</strong> (発散)</p></li>
+</ol></li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="diverging-発散カラーパレット">3. Diverging: 発散カラーパレット</h3>
-<p>基準値（ゼロや平均値）を中心に、両極端へ向けて濃くなる配色。</p>
-
-<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><ul>
-<li><strong>Red-Blue</strong>: 直感的でポピュラーな発散表現。</li>
+<h3 id="qualitative-質的カラーパレット">Qualitative: 質的カラーパレット</h3>
+<ul>
+<li><p>順序や大小関係のない配色</p></li>
+<li><p>因子型変数の塗り分けなどに利用する</p></li>
 </ul>
-</section>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1344"></section>
+<section class="slide level2">
+
+<h4 id="okabe-ito-カラーユニバーサルデザイン">Okabe-Ito: カラーユニバーサルデザイン</h4>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section class="slide level2">
+
+<h4 id="hcl-視覚的平等を保つ設計">HCL: 視覚的平等を保つ設計</h4>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section class="slide level2">
+
+<h3 id="sequential-順序カラーパレット">Sequential: 順序カラーパレット</h3>
+<ul>
+<li><p>明度や彩度が連続的に変化</p></li>
+<li><p>一方向に増加する数値を表現するときに利用する</p></li>
+</ul>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1344"></section>
+<section class="slide level2">
+
+<h4 id="viridis-数値の変化と視覚的変化が一致するように数学的に設計">Viridis: 数値の変化と視覚的変化が一致するように数学的に設計</h4>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section class="slide level2">
+
+<h3 id="diverging-発散カラーパレット">Diverging: 発散カラーパレット</h3>
+<ul>
+<li><p>基準色を中心に両極端へ向けて変化する配色</p></li>
+<li><p>ゼロや平均値などを基準に持つ変数の可視化に利用する</p></li>
+</ul>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1344"></section>
+<section class="slide level2">
+
+<h4 id="temps-色彩豊かな発散パレット">Temps: 色彩豊かな発散パレット</h4>
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="storytelling-with-data" class="slide level2">
 <h2>Storytelling With Data</h2>
-<h3 id="識別のための配色から強調の配色へ">識別のための配色から「強調」の配色へ</h3>
 <ul>
-<li><strong>探索的フェーズ</strong>: データの全容を把握（識別性）</li>
-<li><strong>説明的フェーズ</strong>: 伝えたいメッセージを強調</li>
+<li><p><strong>探索的</strong>な可視化</p>
+<ul>
+<li>データの識別性を高めるために審美的属性を利用する</li>
+</ul></li>
+<li><p><strong>説明的</strong>な可視化: 伝えたいメッセージを強調</p>
+<ul>
+<li><p>注目すべきデータを強調するために審美的属性を利用する</p></li>
+<li><p>主役以外の部分を<strong>グレーアウト</strong>し、読者の視線を誘導する</p></li>
+</ul></li>
 </ul>
-<p>主役以外の部分を<strong>グレーアウト</strong>し、視線を誘導する。</p>
 </section>
 <section class="slide level2">
 
-<h3 id="説明的な可視化の例">説明的な可視化の例</h3>
 
-<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>条件を満たすデータのみを色付けするなら <code>gghighlight</code> パッケージも有効です。</p>
-</div>
-</div>
-</div>
-</section>
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center r-stretch" width="720"></section>
+<section class="slide level2">
+
+
+<img data-src="tokyo-r-120-slide_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="720"></section>
 <section id="enjoy" class="slide level2">
-<h2>Enjoy !!</h2>
-<p><strong>ggplot2</strong> はデータから柔軟にプロットを作り上げるための最強の道具です。</p>
-<p>レイヤーの骨格と、構造に合致したカラーパレットで、 データの理解を深める可視化を！</p>
+<h2>Enjoy!!</h2>
+<ul>
+<li><p><strong>ggplot2</strong> は可視化における最強の道具</p></li>
+<li><p>データの構造に合致した <strong>Layer</strong> と <strong>Scale</strong> を組み合わせて、データの理解を深める可視化に取り組もう！</p></li>
+</ul>
 </section>
 <section class="slide level2">
 
-<h3 id="references">References</h3>
+<h3 id="関連リンク集">関連リンク集</h3>
 <ul>
-<li><strong>ggplot2 Extensions</strong>: https://exts.ggplot2.tidyverse.org/</li>
-<li><strong>All Your Figure Are Belong To Us</strong>: ギャラリー</li>
-<li><strong>Storytelling With Data - ggplot</strong>: Cole Nussbaumer Knaflic のプロット再現</li>
-<li>Hadley Wickham 論文: <em>A Layered Grammar of Graphics</em> (2010)</li>
+<li><p><strong>ggplot2 Extensions</strong></p>
+<p>https://exts.ggplot2.tidyverse.org/</p></li>
+<li><p><strong>All Your Figure Are Belong To Us</strong></p>
+<p>https://yutannihilation.github.io/allYourFigureAreBelongToUs/</p></li>
+<li><p><strong>Storytelling With Data - ggplot</strong></p>
+<p>https://github.com/adamribaudo/storytelling-with-data-ggplot?tab=readme-ov-file</p></li>
+<li><p>Hadley Wickham (2010), “<strong>A Layered Grammar of Graphics</strong>”</p>
+<p>https://vita.had.co.nz/papers/layered-grammar.pdf</p></li>
 </ul>
+</section>
+<section class="slide level2">
+
 
 
 </section>

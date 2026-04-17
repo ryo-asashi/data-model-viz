@@ -238,7 +238,10 @@ ggplot() +
 #| warning: false
 #| message: false
 #| code-fold: false
-ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
+ggplot(
+  data = diamonds,
+  mapping = aes(x = carat, y = price)
+) +
   geom_point()
 ```
 
@@ -250,17 +253,20 @@ ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
 
 最も基本的なレイヤーです。データ点をそのままの位置に配置します。
 
--   **内部構成:** `geom = "point"`, `stat = "identity"`, `position = "identity"`
+-   `geom = "point", stat = "identity", position = "identity"`
 
--   **短縮関数:** `geom_point()`
+-   `geom_point()` で作成 
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(data = diamonds) +
-  geom_point(mapping = aes(x = carat, y = price)) +
-  scale_x_log10() +  # x軸に対数スケールを指定
-  scale_y_log10()    # y軸に対数スケールを指定
+ggplot(
+  data = diamonds,
+  mapping = aes(x = carat, y = price)
+) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
 ```
 
 ### 棒グラフ (Bar Chart)
@@ -269,43 +275,52 @@ ggplot(data = diamonds) +
 
 #### 度数グラフ
 
--   **内部構成:** `geom = "bar"`, `stat = "count"`, `position = "stack"`
+-   `geom = "bar", stat = "count", position = "stack"`
 
--   **短縮関数:** `geom_bar()`
+-   `geom_bar()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(data = diamonds) +
-  geom_bar(mapping = aes(x = clarity)) 
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity)
+) +
+  geom_bar()
 ```
 
 #### 列グラフ
 
--   **内部構成:** `geom = "col"`, `stat = "identity"`, `position = "stack"`
+-   `geom = "col", stat = "identity", position = "stack"`
 
--   **短縮関数:** `geom_col()`
+-   `geom_col()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(data = diamonds |> count(clarity)) +   # カウント済みデータを指定
-  geom_col(mapping = aes(x = clarity, y = n)) # x軸上の位置に水準を対応付ける
+ggplot(
+  data = diamonds |> count(clarity),
+  mapping = aes(x = clarity, y = n)
+) +
+  geom_col()
 ```
 
 ### ヒストグラム (Histogram)
 
 連続量を一定の区間 (bin) に区切り、その中のデータ数を集計します。
 
--   **内部構成:** `geom = "bar"`, `stat = "bin"`, `position = "stack"`
+-   `geom = "bar", stat = "bin", position = "stack"`
 
--   **短縮関数:** `geom_histogram()`
+-   `geom_histogram()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(diamonds) +
-  geom_histogram(aes(x = price), bins = 20) +
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
+  geom_histogram(bins = 20) +
   scale_x_log10()
 ```
 
@@ -313,14 +328,17 @@ ggplot(diamonds) +
 
 ヒストグラムを滑らかにしたもので、データの分布密度を推定して描画します。
 
--   **内部構成:** `geom = "area"`, `stat = "density"`, `position = "identity"`
+-   `geom = "area", stat = "density", position = "identity"`
 
--   **短縮関数:** `geom_density()`
+-   `geom_density()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(diamonds, aes(x = price)) +
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
   geom_density() +
   scale_x_log10()
 ```
@@ -329,14 +347,17 @@ ggplot(diamonds, aes(x = price)) +
 
 データの分布（中央値、四分位範囲、外れ値）を要約して表現します。
 
--   **内部構成:** `geom = "boxplot"`, `stat = "boxplot"`, `position = "dodge2"`
+-   `geom = "boxplot", stat = "boxplot", position = "dodge2"`
 
--   **短縮関数:** `geom_boxplot()`
+-   `geom_boxplot()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(diamonds, aes(x = clarity, y = price)) +
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity, y = price)
+) +
   geom_boxplot() +
   scale_y_log10()
 ```
@@ -345,14 +366,17 @@ ggplot(diamonds, aes(x = clarity, y = price)) +
 
 時系列データなど、点と点を線で結んで推移を表現します。
 
--   **内部構成:** `geom = "line"`, `stat = "identity"`, `position = "identity"`
+-   `geom = "line", stat = "identity", position = "identity"`
 
--   **短縮関数:** `geom_line()`
+-   `geom_line()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(economics, aes(x = date, y = unemploy)) +
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
   geom_line()
 ```
 
@@ -360,14 +384,17 @@ ggplot(economics, aes(x = date, y = unemploy)) +
 
 折れ線グラフの下側を塗りつぶしたものです。変化の「量」を強調したいときに使われます。
 
--   **内部構成:** `geom = "area"`, `stat = "identity"`, `position = "stack"`
+-   `geom = "area", stat = "identity", position = "stack"`
 
--   **短縮関数:** `geom_area()`
+-   `geom_area()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(economics, aes(x = date, y = unemploy)) +
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
   geom_area()
 ```
 
@@ -375,14 +402,21 @@ ggplot(economics, aes(x = date, y = unemploy)) +
 
 $x, y$ のグリッド（格子）に対して、第3の変数 $z$ の値を色で表現します。なお、この例では汎用的な `geom_tile()` を使用しますが、グリッドサイズが一定なら、`geom_raster()` を利用して高速に描画することも可能です。
 
--   **内部構成**: geom = "tile", stat = "identity", position = "identity"
+-   `geom = "tile", stat = "identity", position = "identity"`
 
--   **短縮関数**: geom_tile()
+-   `geom_tile()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    fill = density
+  )
+) +
   geom_tile()
 ```
 
@@ -390,30 +424,22 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
 
 $x, y$ 平面上の高さ ($z$ 値) が同じ地点を線で結んだり、色で塗り分けたりして表現します。
 
-#### 等高線
+-   `geom = "path", stat = "contour", position = "identity"`
 
--   **内部構成**: geom = "path", stat = "contour", position = "identity"
-
--   **短縮関数**: geom_contour()
+-   `geom_contour()` で作成
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
-ggplot(faithfuld, aes(x = eruptions, y = waiting, z = density)) +
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    z = density
+  )
+) +
   geom_contour()
-```
-
-#### 塗りつぶし等高線
-
--   **内部構成**: geom = "polygon", stat = "contour_filled", position = "identity"
-
--   **短縮関数**: geom_contour_filled()
-
-```{r}
-#| fig-height: 3
-#| fig-width: 5
-ggplot(faithfuld, aes(x = eruptions, y = waiting, z = density)) +
-  geom_contour_filled()
 ```
 
 ------------------------------------------------------------------------
@@ -440,7 +466,7 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting, z = density)) +
 ```{r}
 #| echo: false
 #| fig-height: 5
-#| fig-width: 5
+#| fig-width: 10
 par.midr(mfrow = c(6, 1))
 plot(color.theme("Okabe-Ito"))
 plot(color.theme("HCL"), 5)
@@ -497,7 +523,7 @@ ggplot(data = diamonds |> sample_n(5000)) +
 ```{r}
 #| echo: false
 #| fig-height: 5
-#| fig-width: 5
+#| fig-width: 10
 par.midr(mfrow = c(6, 1))
 plot(color.theme("Viridis"))
 plot(color.theme("bluescale"))
@@ -529,7 +555,7 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
 ```{r}
 #| echo: false
 #| fig-height: 5
-#| fig-width: 5
+#| fig-width: 10
 par.midr(mfrow = c(6, 1))
 plot(color.theme("RdBu"))
 plot(color.theme("Temps"))
@@ -539,16 +565,16 @@ plot(color.theme("Zissou 1"))
 plot(color.theme("Hiroshige"))
 ```
 
--   **Red-Blue パレット**
+-   **Temps パレット**
 
-    赤と青という2色の直感的なイメージを利用した、最もポピュラーな発散パレットの一つです。
+    深みのある青緑から明るいイエローを経て、ローズレッドへと変化する、色彩豊かな発散パレットです。中央が白ではなくイエロー系であるため、白背景のグラフでも鮮やかな印象が保たれます。
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 5
 ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
   geom_tile() +
-  scale_fill_theme("RdBu", middle = 0.01)
+  scale_fill_theme("Temps", middle = 0.01)
 ```
 
 ::: {.callout-tip title="paletteer パッケージ"}
@@ -560,21 +586,18 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
 
 ## Storytelling With Data
 
-### 識別のための配色から強調のための配色へ
-
 データの可視化には、全容を把握するための**探索的**なフェーズと、伝えたいメッセージを強調する**説明的**なフェーズがあります。
 
-探索的な可視化においてはデータの識別性を高めることが重要ですが、説明的な可視化においては**データを使って語ること (Storytelling With Data)** が重要です。
-そして、その核心は「読者の認知負荷を減らし、見てほしい場所に一瞬で視線を誘導すること」にあります。
-
-プロットの中で多くの色を使い分けると、聞き手・読み手が色の意味を把握するために凡例とプロットの本体との間を何度も往復することになります。
-伝えたいメッセージだけを強調するためには、主役以外の部分をグレーアウトするという手法が極めて有効です。
+探索的な可視化においてはデータの識別性を高めることが重要ですが、説明的な可視化においては、**データを使って語ること (Storytelling With Data)** が重要です。
+そして、その核心は、色やサイズなどの審美的要素を駆使してデータの注目すべき部分を強調し、読者の視線を注目してほしい場所に誘導することにあります。
+色の場合、プロットの中で多くの色を使い分けると、すべての色の意味を把握するために、読者の視線は凡例とプロット本体の間を何度も往復することになります。
+読者に伝えたいメッセージを強調するためには、主役以外の部分をグレーアウトするという手法が極めて有効です。
 
 ### 説明的な可視化の例
 
 ```{r}
-#| fig-height: 4
-#| fig-width: 6
+#| fig-height: 5
+#| fig-width: 7.5
 #| code-fold: true
 ggplot(data = diamonds) +
   geom_bar(
@@ -583,8 +606,8 @@ ggplot(data = diamonds) +
   ) +
   scale_fill_theme("highlight?accent='steelblue4';which=2") +
   labs(
-    subtitle = "透明度が高いほど大きなダイヤモンドの割合は低下する",
-#    subtitle = "Proportion of Large Diamonds Decreases as Clarity Increases",
+    title = "透明度が高いほど大きなダイヤモンドの割合は低下する",
+#    title = "Proportion of Large Diamonds Decreases as Clarity Increases",
     fill = "カラット", #"Carat",
     x = "クラリティ", #"Clarity",
     y = "割合", #"Proportion"
@@ -593,8 +616,8 @@ ggplot(data = diamonds) +
 ```
 
 ```{r}
-#| fig-height: 4
-#| fig-width: 6
+#| fig-height: 5
+#| fig-width: 7.5
 #| message: false
 #| warning: false
 #| code-fold: true
@@ -623,9 +646,9 @@ ggplot(
     mapping = aes(y = registered)
   ) +
   labs(
-    subtitle = "貸自転車サービスの登録者の多くは通勤のために自転車を利用",
+    title = "貸自転車サービスの登録者の多くは通勤のために自転車を利用",
     x = "時", # "Hour",
-    y = "登録者による利用数", # "Number of Bikers",
+    y = "登録者による利用数", # "Number of Registered Bikers",
     color = NULL,
   ) +
   scale_color_theme("highlight?which=2;accent='firebrick2'") +
@@ -639,7 +662,7 @@ ggplot(
 `gghighlight()` 関数をプロットに重ねるだけで、強調するデータのみを表示するレイヤーを重ねてくれるため、他のデータに埋もれてしまうことがありません。
 :::
 
-## Enjoy !!
+## Enjoy!!
 
 **ggplot2** パッケージは、データから柔軟にプロットを作り上げるための最強の道具です。
 レイヤーを重ねてプロットの骨格を構築し、データの構造に合致したカラーパレットで彩ることで、データの理解を深めるために有用なプロットを作成することができます。

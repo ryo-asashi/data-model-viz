@@ -2,7 +2,7 @@
 title: "データの可視化"
 subtitle: "Tokyo.R #120"
 date: "2026-04-18"
-format: 
+format:
   revealjs:
     theme: default
     slide-number: true
@@ -13,8 +13,6 @@ format:
 execute:
   freeze: true
 ---
-
-## 使用パッケージ
 
 ```{r library}
 #| message: false
@@ -42,24 +40,22 @@ library(fmsb)
 library(ISLR2)
 
 #| echo: false
-pkgs <- search() |>
-  Filter(f = function(x) grepl("package:", x)) |>
-  gsub(pattern = "package:", replacement = "") |>
-  sapply(FUN = function(x) as.character(packageVersion(x))) |>
-  rev()
-cat(paste0("- ", names(pkgs), ": ", pkgs), sep = "\n")
 ```
 
----
 
-## ggplot2 パッケージを使おう
+## ggplot2 を使ってみよう
 
-- 探索的な可視化は、そのデータを理解するための第一歩
+- **探索的な可視化**はデータを理解するための第一歩
+
 - **ggplot2** は探索的な可視化に最適なパッケージ
+
   - 多彩で柔軟な表現が可能
-  - **ggforce**、**patchwork**、**gganimate** などの拡張パッケージも豊富
+
+  - 拡張パッケージも豊富
+
 
 ---
+
 
 ```{r mtcars}
 #| fig-height: 5
@@ -69,7 +65,7 @@ cat(paste0("- ", names(pkgs), ": ", pkgs), sep = "\n")
 #| warning: false
 #| code-fold: true
 ggplot(mtcars, aes(x = hp, y = mpg)) +
-  geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"), 
+  geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"),
               color = "grey80", fill = "grey90", alpha = 0.5) +
   geom_point(aes(size = wt, color = factor(cyl)), alpha = 0.8) +
   geom_text_repel(
@@ -92,7 +88,9 @@ ggplot(mtcars, aes(x = hp, y = mpg)) +
   theme(legend.position = "bottom")
 ```
 
+
 ---
+
 
 ```{r gapminder}
 #| fig-height: 5
@@ -119,7 +117,9 @@ ggplot(
   labs(x = "GDP per Capita", y = "Life Expectancy")
 ```
 
+
 ---
+
 
 ```{r life_expectancy}
 #| fig-height: 5
@@ -168,7 +168,9 @@ ggplot(data = japan) +
   )
 ```
 
+
 ---
+
 
 ```{r penguins}
 #| fig-height: 5
@@ -186,30 +188,41 @@ ggplot(penguins, aes(x = bill_len, y = bill_dep, fill = species, size = body_mas
   theme(
     legend.position = "bottom",
     strip.background = element_rect(fill = "gray10", color = "gray10", size = 1.5)
-  ) + 
-  guides(fill = guide_legend(override.aes = list(size = 4))) 
+  ) +
+  guides(fill = guide_legend(override.aes = list(size = 4)))
 ```
+
+
 ---
+
 
 ## The Layered Grammar of Graphics
 
-- プロットを、散布図や棒グラフなどの典型的パターンではなく、抽象的な構成要素からなる **Layer（層）** として構築する理論
+- プロットは、図形的要素やデータに対する統計処理などの抽象的な構成要素からなる **Layer** を重ねて構築されるもの
 
-* **Defaults**: プロットで共通して用いる基盤。データ (`data`) と審美的属性の対応付け (`mapping`) を含む。
-* **Layer**: プロット図形的要素 (`geom`) 、統計的変換 (`stat`)、配置 (`position`)
-* **Scale**: データの値を、位置・色・サイズなどの審美的属性に変換
-* **Coord**: 位置を描画領域に対応付ける座標系
-* **Facet**: データの分割表示方法
+1. **Defaults**: プロットで共通して用いる `data` と `mapping`
+
+    **mapping**: 変数と審美的属性の対応関係 / `aes()` 関数で指定
+
+2. **Layer**: 図形的要素 `geom` / 統計的変換 `stat` / 配置調整 `position`
+
+3. **Scale**: データを位置や色などの審美的属性のスケール上の値に変換
+
+4. **Coord**: 位置の値を描画領域の物理的な場所に対応付ける座標系
+
+5. **Facet**: データを分割して小窓で表示する方法の指定
+
 
 ---
 
-### 理論と短縮関数
+
+### 厳密なコード表現
 
 :::: {.columns}
-
 ::: {.column width="50%"}
-**厳密なコード表現**
+
 ```{r}
+#| echo: true
 #| eval: false
 ggplot() +
   layer(
@@ -226,159 +239,629 @@ ggplot() +
 :::
 
 ::: {.column width="50%"}
-**実際のコード (短縮関数)**
 ```{r}
+#| echo: false
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+ggplot(diamonds, aes(carat, price)) +
+  geom_point()
+```
+:::
+::::
+
+
+---
+
+
+### 実際のコード
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 #| eval: false
 ggplot(diamonds, aes(carat, price)) +
   geom_point()
 ```
 
-*内部でデフォルトの `stat` や `position` を補完している*
-:::
+- `geom_*()` や `stat_*()` は必要な要素をデフォルト値で補間した **Layer** を出力
 
-::::
+- `scale_*()` や `coord_*()` はデフォルトの設定が適用される
 
----
-
-### 散布図と度数グラフ
-
-:::: {.columns}
-::: {.column width="50%"}
-**散布図** (`geom_point`)
-```{r}
-#| fig-height: 4
-ggplot(diamonds) +
-  geom_point(aes(carat, price)) +
-  scale_x_log10() + scale_y_log10()
-```
 :::
 
 ::: {.column width="50%"}
-**度数グラフ** (`geom_bar`)
 ```{r}
-#| fig-height: 4
-ggplot(diamonds) +
-  geom_bar(aes(clarity))
+#| echo: false
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+ggplot(diamonds, aes(carat, price)) +
+  geom_point()
 ```
 :::
 ::::
 
+
 ---
 
-### ヒストグラムと密度曲線
+
+### 散布図 (Scatter Plot)
+
+-   `geom = "point", stat = "identity", position = "identity"`
+
+-   `geom_point()` で作成 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**ヒストグラム** (`geom_histogram`)
 ```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds,
+  mapping = aes(x = carat, y = price)
+) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
 #| fig-height: 4
-ggplot(diamonds) +
-  geom_histogram(aes(price), bins = 20) +
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds,
+  mapping = aes(x = carat, y = price)
+) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+:::
+::::
+
+
+---
+
+
+### 棒グラフ (Bar Chart) - 度数グラフ
+
+-   `geom = "bar", stat = "count", position = "stack"`
+
+-   `geom_bar()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity)
+) +
+  geom_bar()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity)
+) +
+  geom_bar()
+```
+:::
+::::
+
+
+---
+
+
+### 棒グラフ (Bar Chart) - 列グラフ
+
+-   `geom = "col", stat = "identity", position = "stack"`
+
+-   `geom_col()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds |> count(clarity),
+  mapping = aes(x = clarity, y = n)
+) +
+  geom_col()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds |> count(clarity),
+  mapping = aes(x = clarity, y = n)
+) +
+  geom_col()
+```
+:::
+::::
+
+
+---
+
+### ヒストグラム (Histogram)
+
+-   `geom = "bar", stat = "bin", position = "stack"`
+
+-   `geom_histogram()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
+  geom_histogram(bins = 20) +
   scale_x_log10()
 ```
 :::
 
 ::: {.column width="50%"}
-**密度曲線** (`geom_density`)
 ```{r}
+#| echo: false
 #| fig-height: 4
-ggplot(diamonds, aes(price)) +
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
+  geom_histogram(bins = 20) +
+  scale_x_log10()
+```
+:::
+::::
+
+
+---
+
+### 密度曲線 (Density Plot)
+
+-   `geom = "area", stat = "density", position = "identity"`
+
+-   `geom_density()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
+  geom_density() +
+  scale_x_log10()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds,
+  mapping = aes(x = price)
+) +
   geom_density() +
   scale_x_log10()
 ```
 :::
 ::::
 
+
 ---
+
+
+### 箱ひげ図 (Boxplot)
+
+-   `geom = "boxplot", stat = "boxplot", position = "dodge2"`
+
+-   `geom_boxplot()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity, y = price)
+) +
+  geom_boxplot() +
+  scale_y_log10()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = diamonds,
+  mapping = aes(x = clarity, y = price)
+) +
+  geom_boxplot() +
+  scale_y_log10()
+```
+:::
+::::
+
+
+---
+
+
+### 折れ線グラフ (Line Chart)
+
+-   `geom = "line", stat = "identity", position = "identity"`
+
+-   `geom_line()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
+  geom_line()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
+  geom_line()
+```
+:::
+::::
+
+
+---
+
+
+### 面グラフ (Area Chart)
+
+-   `geom = "area", stat = "identity", position = "stack"`
+
+-   `geom_area()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
+  geom_area()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = economics,
+  mapping = aes(x = date, y = unemploy)
+) +
+  geom_area()
+```
+:::
+::::
+
+
+---
+
+### ヒートマップ (Heatmap)
+
+-   `geom = "tile", stat = "identity", position = "identity"`
+
+-   `geom_tile()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    fill = density
+  )
+) +
+  geom_tile()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    fill = density
+  )
+) +
+  geom_tile()
+```
+:::
+::::
+
+
+---
+
+### 等高線図 (Contour Plot)
+
+-   `geom = "path", stat = "contour", position = "identity"`
+
+-   `geom_contour()` で作成
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    z = density
+  )
+) +
+  geom_contour()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 5
+#| fig-align: center
+ggplot(
+  data = faithfuld,
+  mapping = aes(
+    x = eruptions,
+    y = waiting,
+    z = density
+  )
+) +
+  geom_contour()
+```
+:::
+::::
+
+
+---
+
 
 ## データの構造を色にする
 
-色は人間の視覚に最も強く訴えかける要素。
-データの性質に即したスケールを選ばないと、解釈を歪める原因に。
+- 色は審美的属性の中でも特に人間の視覚に強く訴えかける
 
-**3つの基本パレット**
+- データの性質に即したスケールを選ばないと解釈を歪めてしまう
 
-1. **Qualitative** (質的)
-2. **Sequential** (順序)
-3. **Diverging** (発散)
+- **3種類の基本パレット**
+
+  1. **Qualitative** (質的)
+  
+  2. **Sequential** (順序)
+  
+  3. **Diverging** (発散)
+
 
 ---
 
-### 1. Qualitative: 質的カラーパレット
 
-順序や大小関係がない配色。因子型変数の塗り分けに。
+### Qualitative: 質的カラーパレット
+
+- 順序や大小関係のない配色
+
+- 因子型変数の塗り分けなどに利用する
 
 ```{r}
-#| fig-height: 4.5
-#| output-location: column
-set.seed(42)
-ggplot(diamonds |> sample_n(5000)) +
-  geom_point(aes(carat, price, color = clarity)) +
-  scale_color_okabeito() +
-  theme_midr()
+#| echo: false
+#| fig-height: 5
+#| fig-width: 14
+#| fig-align: center
+par.midr(mfrow = c(6, 1))
+plot(color.theme("Okabe-Ito"), text = "")
+plot(color.theme("HCL"), 5, text = "")
+plot(color.theme("Set 1"), text = "")
+plot(color.theme("Tableau 10"), text = "")
+plot(color.theme("R4"), text = "")
+plot(color.theme("Austria"), text = "")
 ```
 
-* **Okabe-Ito**: カラーユニバーサルデザイン
-* **HCL**: 視覚的平等を保つ設計
-
-::: {.callout-tip}
-## paletteer パッケージ
-`scale_color_paletteer_d()` などを使えば、R上の無数のパレットを統一インターフェースで呼び出せます。
-:::
 
 ---
 
-### 2. Sequential: 順序カラーパレット
 
-明度や彩度が連続的に変化。一方向に増加する数値に。
-
-```{r}
-#| fig-height: 4.5
-#| output-location: column
-ggplot(faithfuld, aes(eruptions, waiting, fill = density)) +
-  geom_tile() +
-  scale_fill_viridis_c() +
-  theme_midr()
-```
-
-* **Viridis**: 数値の変化と視覚的変化が一致するように数学的に設計。
-
----
-
-### 3. Diverging: 発散カラーパレット
-
-基準値（ゼロや平均値）を中心に、両極端へ向けて濃くなる配色。
-
-```{r}
-#| fig-height: 4.5
-#| output-location: column
-ggplot(faithfuld, aes(eruptions, waiting, fill = density)) +
-  geom_tile() +
-  scale_fill_theme("RdBu", middle = 0.01) +
-  theme_midr()
-```
-
-* **Red-Blue**: 直感的でポピュラーな発散表現。
-
----
-
-## Storytelling With Data
-
-### 識別のための配色から「強調」の配色へ
-
-* **探索的フェーズ**: データの全容を把握（識別性）
-* **説明的フェーズ**: 伝えたいメッセージを強調
-
-主役以外の部分を**グレーアウト**し、視線を誘導する。
-
----
-
-### 説明的な可視化の例
+#### Okabe-Ito: カラーユニバーサルデザイン
 
 ```{r}
 #| fig-height: 5
-#| fig-width: 8
-#| code-fold: true
+#| fig-width: 5
+#| fig-align: center
+set.seed(42)
+ggplot(diamonds |> sample_n(5000)) +
+  geom_point(aes(carat, price, color = clarity)) +
+  scale_color_okabeito()
+```
+
+
+---
+
+
+#### HCL: 視覚的平等を保つ設計
+
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+set.seed(42)
+ggplot(diamonds |> sample_n(5000)) +
+  geom_point(aes(carat, price, color = clarity)) +
+  scale_color_hue()
+```
+
+
+---
+
+
+### Sequential: 順序カラーパレット
+
+- 明度や彩度が連続的に変化
+
+- 一方向に増加する数値を表現するときに利用する
+
+```{r}
+#| echo: false
+#| fig-height: 5
+#| fig-width: 14
+#| fig-align: center
+par.midr(mfrow = c(6, 1))
+plot(color.theme("Viridis"), text = "")
+plot(color.theme("bluescale"), text = "")
+plot(color.theme("Grays"), text = "")
+plot(color.theme("Heat"), text = "")
+plot(color.theme("Mako"), text = "")
+plot(color.theme("tokyo"), text = "")
+```
+
+
+---
+
+
+#### Viridis: 数値の変化と視覚的変化が一致するように数学的に設計
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+ggplot(faithfuld, aes(eruptions, waiting, fill = density)) +
+  geom_tile() +
+  scale_fill_viridis_c()
+```
+
+
+---
+
+
+### Diverging: 発散カラーパレット
+
+- 基準色を中心に両極端へ向けて変化する配色
+
+- ゼロや平均値などを基準に持つ変数の可視化に利用する
+
+```{r}
+#| echo: false
+#| fig-height: 5
+#| fig-width: 14
+#| fig-align: center
+par.midr(mfrow = c(6, 1))
+plot(color.theme("RdBu"), text = "")
+plot(color.theme("Temps"), text = "")
+plot(color.theme("Spectral"), text = "")
+plot(color.theme("Berlin"), text = "")
+plot(color.theme("Zissou 1"), text = "")
+plot(color.theme("Hiroshige"), text = "")
+```
+
+
+---
+
+
+#### Temps: 色彩豊かな発散パレット
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
+  geom_tile() +
+  scale_fill_theme("Temps", middle = 0.01)
+```
+
+
+---
+
+
+## Storytelling With Data
+
+- **探索的**な可視化
+
+  - データの識別性を高めるために審美的属性を利用する
+
+- **説明的**な可視化: 伝えたいメッセージを強調
+
+  - 注目すべきデータを強調するために審美的属性を利用する
+  
+  - 主役以外の部分を**グレーアウト**し、読者の視線を誘導する
+
+
+---
+
+
+```{r}
+#| fig-height: 5
+#| fig-width: 7.5
+#| fig-align: center
 ggplot(data = diamonds) +
   geom_bar(
     mapping = aes(x = clarity, fill = ifelse(carat < 1, "<1", ">1")),
@@ -386,7 +869,7 @@ ggplot(data = diamonds) +
   ) +
   scale_fill_theme("highlight?accent='steelblue4';which=2") +
   labs(
-    subtitle = "透明度が高いほど大きなダイヤモンドの割合は低下する",
+    title = "透明度が高いほど大きなダイヤモンドの割合は低下する",
     fill = "カラット",
     x = "クラリティ",
     y = "割合"
@@ -394,24 +877,82 @@ ggplot(data = diamonds) +
   theme_light(ink = "gray10")
 ```
 
-::: {.callout-note}
-条件を満たすデータのみを色付けするなら `gghighlight` パッケージも有効です。
-:::
 
 ---
 
-## Enjoy !!
 
-**ggplot2** はデータから柔軟にプロットを作り上げるための最強の道具です。
+```{r}
+#| fig-height: 5
+#| fig-width: 7.5
+#| fig-align: center
+#| message: false
+#| warning: false
+ggplot(
+  data = Bikeshare,
+  mapping = aes(
+    x = hr,
+    color = ifelse(workingday, "平日", "休日"),
+    group = as.factor(workingday)
+  )
+) +
+  annotate(
+    "rect", xmin = 8.5, xmax = 9.5, ymin = -Inf, ymax = Inf,
+    fill = "salmon", alpha = .2
+  ) +
+  annotate(
+    "rect", xmin = 17.5, xmax = 19.5, ymin = -Inf, ymax = Inf,
+    fill = "salmon", alpha = .2
+  ) +
+  geom_line(
+    stat = "summary", linewidth = 1,
+    mapping = aes(y = registered)
+  ) +
+  geom_point(
+    stat = "summary", size = 3,
+    mapping = aes(y = registered)
+  ) +
+  labs(
+    title = "貸自転車サービスの登録者の多くは通勤のために自転車を利用",
+    x = "時", # "Hour",
+    y = "登録者による利用数", # "Number of Bikers",
+    color = NULL,
+  ) +
+  scale_color_theme("highlight?which=2;accent='firebrick2'") +
+  theme_light(ink = "gray10") +
+　theme(legend.position = "bottom")
+```
 
-レイヤーの骨格と、構造に合致したカラーパレットで、
-データの理解を深める可視化を！
 
 ---
 
-### References
 
-* **ggplot2 Extensions**: https://exts.ggplot2.tidyverse.org/
-* **All Your Figure Are Belong To Us**: ギャラリー
-* **Storytelling With Data - ggplot**: Cole Nussbaumer Knaflic のプロット再現
-* Hadley Wickham 論文: *A Layered Grammar of Graphics* (2010)
+## Enjoy!!
+
+- **ggplot2** は可視化における最強の道具
+
+- データの構造に合致した **Layer** と **Scale** を組み合わせて、データの理解を深める可視化に取り組もう！
+
+
+---
+
+
+### 関連リンク集
+
+- **ggplot2 Extensions**
+  
+    https://exts.ggplot2.tidyverse.org/
+
+- **All Your Figure Are Belong To Us**
+
+    https://yutannihilation.github.io/allYourFigureAreBelongToUs/
+
+- **Storytelling With Data - ggplot**
+
+    https://github.com/adamribaudo/storytelling-with-data-ggplot?tab=readme-ov-file
+
+- Hadley Wickham (2010), "**A Layered Grammar of Graphics**"
+
+    https://vita.had.co.nz/papers/layered-grammar.pdf
+
+
+---
