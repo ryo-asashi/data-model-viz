@@ -493,7 +493,7 @@ ggplot(
   )
 ) +
   geom_point() +
-  scale_color_hue()
+  scale_color_okabeito()
 ```
 
 -   **HCL パレット**
